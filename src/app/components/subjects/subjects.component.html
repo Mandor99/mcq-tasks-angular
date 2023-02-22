@@ -1,0 +1,14 @@
+<section class="tw-mt-12 tw-overflow-hidden">
+    <div class="tw-container">
+        <div class="contet tw-grid tw-grid-cols-3 tw-gap-4">
+            <div class=" tw-flex tw-flex-col tw-gap-2 tw-items-center" *ngFor="let sub of subjects; let index=index">
+                <h2 class="tw-capitalize tw-text-[#fff] tw-bg-[darkslateblue] tw-py-2 tw-px-14 tw-rounded tw-shadow-md tw-cursor-pointer" [routerLink]="['/subjects/exam',sub.id]">{{sub?.subjectName}}</h2>
+                <div class="tw-flex tw-justify-center tw-gap-1">
+                    <a class="tw-capitalize" mat-raised-button color="accent" *ngIf="crtUser?.role == 'students'" [routerLink]="['/subjects/exam',sub.id]">start</a>
+                    <a class="tw-capitalize" mat-raised-button color="primary" *ngIf="crtUser?.role == 'doctor'" [routerLink]="['/subjects/exam',sub.id]" >view</a>
+                    <a class="tw-capitalize" mat-raised-button color="warn" *ngIf="crtUser?.role == 'doctor'" (click)="removeSubject(index)">delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

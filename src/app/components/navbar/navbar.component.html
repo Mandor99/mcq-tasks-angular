@@ -1,0 +1,19 @@
+
+    <mat-toolbar color="primary">
+        <a mat-button class="tw-h-full">
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                <mat-icon>school</mat-icon>
+              </button>
+              <span class="">Examy</span>
+        </a>
+        <span class="tw-flex-auto"></span>
+        <a *ngIf="user?.role === ''" mat-button [routerLink]="['/login']" class="tw-h-full">logIn</a>
+        <a *ngIf="user?.role === ''" mat-button [routerLink]="['/signup']" class="tw-h-full">signUp</a>
+        <a *ngIf="user?.role !== ''" mat-button class="tw-h-full" (click)="logOut()">logOut</a>
+        <a *ngIf="user?.role !== ''" mat-button [routerLink]="['/subjects']" class="tw-h-full">Subjects</a>
+        <a *ngIf="user?.role == 'doctor'" mat-button [routerLink]="['/new_exam']" class="tw-h-full">New Exam</a>
+        <a *ngIf="user?.role == 'doctor'" mat-button [routerLink]="['/students']" class="tw-h-full">Students</a>
+        <mat-chip *ngIf="user?.role !== ''">
+          {{user?.name}}
+        </mat-chip>
+      </mat-toolbar>

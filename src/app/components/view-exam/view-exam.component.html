@@ -1,0 +1,42 @@
+<section class="tw-mt-14">
+    <div class="tw-container tw-mt-10 tw-w-[90%]">
+        <div class="tw-w-full tw-mx-auto tw-relative tw-border tw-border-[#ddd] tw-border-solid tw-rounded tw-py-8 tw-px-4">
+            <h1 class="tw-capitalize tw-text-center tw-absolute tw-top-0 tw-left-1/2 -tw-translate-x-1/2 -tw-translate-y-1/2 tw-px-[5rem] tw-py-[.2rem] tw-rounded-full tw-bg-[#3F51B5] tw-text-[#fff]">{{subject.subjectName}} Exam</h1>
+            <div class="exam">
+                <section class="qsSection tw-border-b tw-border-[#ddd] tw-border-solid tw-p-8 tw-rounded" *ngFor="let qs of subject.questions; let index=index">
+                    <h3 class="tw-font-bold tw-text-2xl"><span class="tw-text-[red]">Q{{1+index}}: </span>{{qs.question}}</h3>
+                    <div class="tw-flex tw-flex-wrap tw-justify-between tw-gap-4">
+                        <div class="answer tw-flex tw-items-center tw-gap-1">
+                            <span>A. </span>
+                            <mat-radio-button name="{{index}}" value="{{qs.answer1}}" (change)="getChosen($event)" *ngIf="crtUser?.role=='students' && canChoose"></mat-radio-button>
+                            <span>{{qs.answer1}}</span>
+                        </div>
+                        <div class="answer tw-flex tw-items-center tw-gap-1">
+                            <span>B. </span>
+                            <mat-radio-button name="{{index}}" value="{{qs.answer2}}" (change)="getChosen($event)" *ngIf="crtUser?.role=='students' && canChoose"></mat-radio-button>
+                            <span>{{qs.answer2}}</span>
+                        </div>
+                        <div class="answer tw-flex tw-items-center tw-gap-1">
+                            <span>C. </span>
+                            <mat-radio-button name="{{index}}" value="{{qs.answer3}}" (change)="getChosen($event)" *ngIf="crtUser?.role=='students' && canChoose"></mat-radio-button>
+                            <span>{{qs.answer3}}</span>
+                        </div>
+                        <div class="answer tw-flex tw-items-center tw-gap-1">
+                            <span>D. </span>
+                            <mat-radio-button name="{{index}}" value="{{qs.answer4}}" (change)="getChosen($event)" *ngIf="crtUser?.role=='students' && canChoose"></mat-radio-button>
+                            <span>{{qs.answer4}}</span>
+                        </div>
+                        <div class="answer tw-flex tw-items-center tw-justify-between">
+                            <p class="tw-capitalize tw-text-[green]" *ngIf="crtUser?.role=='doctor'">the correct answer is: {{qs.correctAnswer}}</p>
+                            <button mat-raised-button color="warn" class="tw-capitalize" (click)="deleteQs(index)" *ngIf="crtUser?.role=='doctor'">delete question</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="tw-flex tw-justify-center tw-mt-8">
+                <button *ngIf="canChoose" mat-raised-button class="tw-capitalize" color="warn" (click)="getResult()">result</button>
+                <strong *ngIf="!canChoose" mat-raised-button color="primary">{{result}} / {{subject.questions.length}}</strong>
+            </div>
+        </div>
+    </div>
+</section>

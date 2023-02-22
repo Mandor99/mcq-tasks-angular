@@ -1,0 +1,113 @@
+<div>
+    <mat-stepper linear #stepper>
+        <mat-step [editable]="isEditable" [completed]="isStep1">
+            <div class="tw-container">
+                <form [formGroup]="subjectForm">
+                    <ng-template matStepLabel class="tw-capitalize">subject name</ng-template>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Subject Name</mat-label>
+                        <input matInput formControlName="subjectName" placeholder="subject name">
+                    </mat-form-field>
+                    <div>
+                        <button mat-button (click)="addSubName(stepper)" [disabled]="subjectForm.invalid" >Start</button>
+                    </div>
+                </form>
+            </div>
+        </mat-step>
+
+        <mat-step [editable]="isEditable" [completed]="isStep2">
+            <div class="tw-container tw-w-[90%]">
+            <form [formGroup]="examForm">
+                <ng-template matStepLabel>{{subName}} Questions</ng-template>
+                <mat-form-field class="tw-w-full">
+                    <mat-label>The Question</mat-label>
+                    <input matInput formControlName="question" placeholder="question">
+                </mat-form-field>
+                <div class="tw-grid tw-grid-cols-2 tw-gap-6">
+                    <div class="tw-flex tw-gap-2 tw-items-center">
+                        <!-- <mat-radio-group> -->
+                            <mat-radio-button value="answer1" (change)="getChosen($event)"></mat-radio-button>
+                        <!-- </mat-radio-group> -->
+                        <mat-form-field class="tw-w-full">
+                            <mat-label>Answer A</mat-label>
+                            <input matInput formControlName="answer1" placeholder="answer A">
+                        </mat-form-field>
+                    </div>
+                    <div class="tw-flex tw-gap-2 tw-items-center">
+                        <!-- <mat-radio-group> -->
+                            <mat-radio-button value="answer2" (change)="getChosen($event)"></mat-radio-button>
+                        <!-- </mat-radio-group> -->
+                        <mat-form-field  class="tw-w-full">
+                            <mat-label>Answer B</mat-label>
+                            <input matInput formControlName="answer2" placeholder="answer B">
+                        </mat-form-field>
+                    </div>
+                    <div class="tw-flex tw-gap-2 tw-items-center">
+                        <!-- <mat-radio-group> -->
+                            <mat-radio-button value="answer3" (change)="getChosen($event)"></mat-radio-button>
+                        <!-- </mat-radio-group> -->
+                        <mat-form-field class="tw-w-full">
+                            <mat-label>Answer C</mat-label>
+                            <input matInput formControlName="answer3" placeholder="answer C">
+                        </mat-form-field>
+                    </div>
+                    <div class="tw-flex tw-gap-2 tw-items-center">
+                        <!-- <mat-radio-group> -->
+                            <mat-radio-button value="answer4" (change)="getChosen($event)"></mat-radio-button>
+                        <!-- </mat-radio-group> -->
+                        <mat-form-field class="tw-w-full">
+                            <mat-label>Answer D</mat-label>
+                            <input matInput formControlName="answer4" placeholder="answer D">
+                        </mat-form-field>
+                    </div>
+                    <div class="tw-flex tw-gap-2 tw-w-full ">
+                        <button mat-raised-button class="btn btn-success" matStepperNext class="tw-capitalize" (click)="submit(stepper)" [disabled]="questions.length==0">Finish exam</button>
+                        <button mat-raised-button color="warn" matStepperPrevious class="tw-capitalize" (click)="cancelExam(stepper)">cancel exam</button>
+                    </div>
+                    <div class="tw-flex tw-gap-2 tw-w-full tw-flex-row-reverse">
+                        <button mat-raised-button color="accent" class="tw-capitalize" (click)="deleteQuestion()">delete question</button>
+                        <button mat-raised-button color="primary" class="tw-capitalize" (click)="saveQuestion()" [disabled]="examForm.invalid">Save Question</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </mat-step>
+
+        <mat-step>
+            <ng-template matStepLabel>View The Exam</ng-template>
+            <div class="tw-container tw-mt-10 tw-w-[90%]">
+                <div class="tw-w-full tw-mx-auto tw-relative tw-border tw-border-[#ddd] tw-border-solid tw-rounded tw-py-8 tw-px-4">
+                    <h1 class="tw-capitalize tw-text-center tw-absolute tw-top-0 tw-left-1/2 -tw-translate-x-1/2 -tw-translate-y-1/2 tw-px-[5rem] tw-py-[.2rem] tw-rounded-full tw-bg-[#3F51B5] tw-text-[#fff]">{{subName}} Exam</h1>
+                    <div class="exam">
+                        <section class="qsSection tw-border-b tw-border-[#ddd] tw-border-solid tw-p-8 tw-rounded" *ngFor="let qs of questions; let index=index">
+                            <h3 class="tw-font-bold tw-text-2xl"><span class="tw-text-[red]">Q{{1+(index)}}: </span> {{qs?.question}}</h3>
+                            <div class="tw-flex tw-flex-wrap tw-justify-between tw-gap-4">
+                                <div class="answer tw-flex tw-items-center tw-gap-1">
+                                    <span>A. </span>
+                                    <span>{{qs?.answer1}}</span>
+                                </div>
+                                <div class="answer tw-flex tw-items-center tw-gap-1">
+                                    <span>B. </span>
+                                    <span>{{qs?.answer2}}</span>
+                                </div>
+                                <div class="answer tw-flex tw-items-center tw-gap-1">
+                                    <span>C. </span>
+                                    <span>{{qs?.answer3}}</span>
+                                </div>
+                                <div class="answer tw-flex tw-items-center tw-gap-1">
+                                    <span>D. </span>
+                                    <span>{{qs?.answer4}}</span>
+                                </div>
+                                <div class="answer tw-flex tw-items-center tw-justify-between">
+                                    <p class="tw-capitalize tw-text-[green]">the correct answer is: {{qs?.correctAnswer}}</p>
+                                    <button mat-raised-button color="warn" (click)="deleteQs(index)">delete question</button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </mat-step>
+    </mat-stepper>
+
+</div>
