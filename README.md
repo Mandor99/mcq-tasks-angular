@@ -1,27 +1,98 @@
-# McqFrontEnd
+#ur json server should be like that ==>>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+{
+  "students": [
+    {
+      "name": "mando1",
+      "email": "mando1@m.com",
+      "password": "123",
+      "subjects": [
+        {
+          "subjectName": "english",
+          "degree": 1,
+          "subjectId": 2
+        },
+        {
+          "subjectName": "math",
+          "degree": 1,
+          "subjectId": 1
+        }
+      ],
+      "id": 1
+    },
+    {
+      "name": "mando2",
+      "email": "mando2@m.com",
+      "password": "0000",
+      "id": 2
+    },
+    {
+      "name": "mando3",
+      "email": "mando3@m.com",
+      "password": "000",
+      "id": 3
+    },
+    {
+      "name": "mando4",
+      "email": "mando4@m.com",
+      "password": "0000",
+      "id": 4
+    }
+  ],
+  "doctor": [
+    {
+      "name": "admin",
+      "email": "admin@admin.com",
+      "password": "0000",
+      "id": 1
+    }
+  ],
+  "subjects": [
+    {
+      "subjectName": "math",
+      "questions": [
+        {
+          "question": "2+2",
+          "answer1": "4",
+          "answer2": "5",
+          "answer3": "6",
+          "answer4": "10",
+          "correctAnswer": "4"
+        },
+        {
+          "question": "2*2",
+          "answer1": "1",
+          "answer2": "2",
+          "answer3": "3",
+          "answer4": "4",
+          "correctAnswer": "4"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "subjectName": "english",
+      "questions": [
+        {
+          "question": "i can ...",
+          "answer1": "play",
+          "answer2": "playing",
+          "answer3": "to play",
+          "answer4": "palyed",
+          "correctAnswer": "play"
+        }
+      ],
+      "id": 2
+    }
+  ],
+  "login": [
+    {
+      "email": "admin@admin.com",
+      "password": "0000",
+      "role": "doctor",
+      "name": "admin",
+      "userId": 1,
+      "id": 1
+    }
+  ]
+}
